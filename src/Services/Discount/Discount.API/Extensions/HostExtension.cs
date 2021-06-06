@@ -19,11 +19,11 @@ namespace Discount.API.Extensions
             {
                 var services = scope.ServiceProvider;
                 var configuration = services.GetRequiredService<IConfiguration>();
-                var logger = services.GetRequiredService<ILogger>();
+                //var logger = services.GetRequiredService<ILogger>();
 
                 try
                 {
-                    logger.LogInformation("Migrating postgresql database");
+                    //logger.LogInformation("Migrating postgresql database");
 
                     using var connection = new NpgsqlConnection(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
                     connection.Open();
@@ -49,7 +49,7 @@ namespace Discount.API.Extensions
                     command.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Samsung 10', 'Samsung Discount', 100);";
                     command.ExecuteNonQuery();
 
-                    logger.LogInformation("Migrated postgresql database");
+                    //logger.LogInformation("Migrated postgresql database");
                 }
                 catch (NpgsqlException ex)
                 {
