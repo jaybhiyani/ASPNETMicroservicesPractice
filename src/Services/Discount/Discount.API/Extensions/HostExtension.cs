@@ -14,7 +14,7 @@ namespace Discount.API.Extensions
     {
         public static IHost MigrateDatabase<TContext>(this IHost host, int? retry = 0)
         {
-            int rertyCount = retry.Value;
+            int retryCount = retry.Value;
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -53,9 +53,9 @@ namespace Discount.API.Extensions
                 }
                 catch (NpgsqlException ex)
                 {
-                    rertyCount++;
+                    retryCount++;
                     System.Threading.Thread.Sleep(2000);
-                    MigrateDatabase<TContext>(host, rertyCount);
+                    MigrateDatabase<TContext>(host, retryCount);
                 }
             }
             return host;
