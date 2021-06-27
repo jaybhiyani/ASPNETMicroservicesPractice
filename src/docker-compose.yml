@@ -49,11 +49,11 @@ services:
       context: .
       dockerfile: Services/Ordering/Ordering.API/Dockerfile
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
-
-
-
